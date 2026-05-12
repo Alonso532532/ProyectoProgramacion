@@ -20,9 +20,9 @@ public class VCModificar {
     private static String edadAnterior = "";
     private static String nombreAnterior = "";
 
-    private static TextField tFC1 = new TextField();
-    private static TextField tFC2 = new TextField();
-    private static TextField tFC3 = new TextField();
+    private static JTextField tFC1 = new JTextField();
+    private static JTextField tFC2 = new JTextField();
+    private static JTextField tFC3 = new JTextField();
 
     // Este método inicializa todo de la ventana
     public static void construir() {
@@ -154,6 +154,6 @@ public class VCModificar {
     }
 
     public static void ocultar(){
-        fModificar.dispose();
+        fModificar.setVisible(false);
     }
 }

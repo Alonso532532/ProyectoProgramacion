@@ -18,14 +18,13 @@ public class VEModificar {
     private static String precioAnterior = "";
     private static String dniAnterior = "";
 
-    private static TextField tFC1 = new TextField();
+    private static JTextField tFC1 = new JTextField();
 
     //Creo el combobox
-    private static String[] opciones = {"Normal", "Oferta", "Familia numerosa"};
-    private static JComboBox<String> cBC1 = new JComboBox<>(opciones);
+    private static JComboBox<String> cBC1 = new JComboBox<>(new String[]{"Normal", "Oferta", "Familia numerosa"});
 
-    private static TextField tFC3 = new TextField();
-    private static TextField tFC4 = new TextField();
+    private static JTextField tFC2 = new JTextField();
+    private static JTextField tFC3 = new JTextField();
 
     // Este método inicializa todo de la ventana
     public static void construir() {
@@ -58,8 +57,8 @@ public class VEModificar {
 
         panelC.add(tFC1);
         panelC.add(cBC1);
+        panelC.add(tFC2);
         panelC.add(tFC3);
-        panelC.add(tFC4);
 
         JPanel panelS = new JPanel(new FlowLayout());
 
@@ -74,21 +73,21 @@ public class VEModificar {
 
         botonModificar.addActionListener(a -> {
             // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
-            if (!cBC1.getSelectedItem().equals(tipoAnterior) || !tFC3.getText().equals(precioAnterior) || !tFC4.getText().equals(dniAnterior)){
+            if (!cBC1.getSelectedItem().equals(tipoAnterior) || !tFC2.getText().equals(precioAnterior) || !tFC3.getText().equals(dniAnterior)){
 
                 // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
                 JFrame mensaje = new JFrame("Proceso de modificación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        resp = CEntrada.modificar(Integer.parseInt(numeroDeEntrada), tipoAnterior, precioAnterior, dniAnterior, (String) cBC1.getSelectedItem(), tFC3.getText(), tFC4.getText()),
+                        resp = CEntrada.modificar(Integer.parseInt(numeroDeEntrada), tipoAnterior, precioAnterior, dniAnterior, (String) cBC1.getSelectedItem(), tFC2.getText(), tFC3.getText()),
                         "Información sobre la operación",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Entrada modificada con éxito")) {
                     tipoAnterior = (String) cBC1.getSelectedItem();
-                    precioAnterior = tFC3.getText();
-                    dniAnterior = tFC4.getText();
+                    precioAnterior = tFC2.getText();
+                    dniAnterior = tFC3.getText();
                     VEntradas.actualizarTabla(modelo);
                 }
 
@@ -125,8 +124,8 @@ public class VEModificar {
                 cBC1.setSelectedIndex(2);
                 break;
         }
-        tFC3.setText(precio);
-        tFC4.setText(dni);
+        tFC2.setText(precio);
+        tFC3.setText(dni);
 
         // Sitúo la ventana
         fModificar.setLocation((int) posicion.getX()+250, (int) posicion.getY()+265);
@@ -136,6 +135,6 @@ public class VEModificar {
     }
 
     public static void ocultar(){
-        fModificar.dispose();
+        fModificar.setVisible(false);
     }
 }

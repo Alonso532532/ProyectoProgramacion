@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.regex.Pattern;
 
 
 public class VVisitas {
@@ -31,9 +32,9 @@ public class VVisitas {
 
         // Creo el menú de arriba y los botones
         JPanel arriba = new JPanel();
-        arriba.setLayout(new GridLayout(1, 10, 10, 10));
+        arriba.setLayout(new GridLayout(1, 0, 10, 10));
         JButton botonN1 = new JButton("Cerrar sesión");
-        JButton botonN2 = new JButton("Atracciónes");
+        JButton botonN2 = new JButton("Atracciones");
         JButton botonN3 = new JButton("Zonas");
         JButton botonN4 = new JButton("Visitas");
         JButton botonN5 = new JButton("Clientes");
@@ -103,7 +104,7 @@ public class VVisitas {
                 if (texto.trim().isEmpty()) {
                     sorter.setRowFilter(null);
                 } else {
-                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto));
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(texto)));
                 }
             }
         });
@@ -187,7 +188,7 @@ public class VVisitas {
                 // Sí depende algún elemento le pregunto si quiere eliminarlo
                 int respuesta = JOptionPane.showConfirmDialog(
                         null,
-                        "¿Estas seguro de que quieres eliminar la visita con DNI: "+ tabla.getValueAt(filaModelo, 0) +", Numero de zona: "+ tabla.getValueAt(filaModelo, 1) +" y fecha: "+ tabla.getValueAt(filaModelo, 2) +"?",
+                        "¿Estas seguro de que quieres eliminar la visita con DNI: "+ modelo.getValueAt(filaModelo, 0) +", Numero de zona: "+ modelo.getValueAt(filaModelo, 1) +" y fecha: "+ modelo.getValueAt(filaModelo, 2) +"?",
                         "Confirmación",
                         JOptionPane.YES_NO_OPTION
                 );

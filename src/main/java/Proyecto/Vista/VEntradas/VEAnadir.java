@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.Arrays;
 
 public class VEAnadir {
     private static JFrame fAnadir = new JFrame();
@@ -14,9 +15,9 @@ public class VEAnadir {
     private static DefaultTableModel modelo;
 
     //Creo e inicializo el combobox
-    private static JComboBox<String> cBC1 = new JComboBox<>();
-    private static TextField tFC1 = new TextField();
-    private static TextField tFC2 = new TextField();
+    private static JComboBox<String> cBC1 = new JComboBox<>(new String[]{"Normal", "Oferta", "Familia numerosa"});
+    private static JTextField tFC1 = new JTextField();
+    private static JTextField tFC2 = new JTextField();
 
     // Este método inicializa todo de la ventana
     public static void construir() {
@@ -90,16 +91,11 @@ public class VEAnadir {
         modelo = modeloNuevo;
         tFC1.setText("");
         tFC2.setText("");
-        // Lo vacío y le introduzco nuevas opciónes
-        cBC1.removeAllItems();
-        for (String opcion : CZonas.seleccionarTodo().stream().map(a -> a.getNumeroDeZona() + "-" + a.getNombre()).toList().toArray(new String[0])) {
-            cBC1.addItem(opcion);
-        }
-        // Selecciono la primera opción
+        // Selecciono la primera opción del combobox
         cBC1.setSelectedIndex(0);
     }
 
     public static void ocultar(){
-        fAnadir.dispose();
+        fAnadir.setVisible(false);
     }
 }

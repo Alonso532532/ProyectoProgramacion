@@ -11,9 +11,9 @@ public class VCAnadir {
     private static JFrame fAnadir = new JFrame();
     private static DefaultTableModel modelo;
 
-    private static TextField tFC1 = new TextField();
-    private static TextField tFC2 = new TextField();
-    private static TextField tFC3 = new TextField();
+    private static JTextField tFC1 = new JTextField();
+    private static JTextField tFC2 = new JTextField();
+    private static JTextField tFC3 = new JTextField();
 
     public static void construir() {
         fAnadir.setResizable(false);
@@ -89,6 +89,6 @@ public class VCAnadir {
     }
 
     public static void ocultar(){
-        fAnadir.dispose();
+        fAnadir.setVisible(false);
     }
 }

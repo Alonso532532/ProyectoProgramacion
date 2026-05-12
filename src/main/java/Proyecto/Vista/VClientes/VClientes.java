@@ -18,6 +18,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.regex.Pattern;
 
 public class VClientes {
     public static void ejecutar(boolean admin, Point posicion, Dimension dimension) {
@@ -33,7 +34,7 @@ public class VClientes {
 
         // Creo el menú de arriba y los botones
         JPanel arriba = new JPanel();
-        arriba.setLayout(new GridLayout(1, 10, 10, 10));
+        arriba.setLayout(new GridLayout(1, 0, 10, 10));
         JButton botonN1 = new JButton("Cerrar sesión");
         JButton botonN2 = new JButton("Atracciónes");
         JButton botonN3 = new JButton("Zonas");
@@ -105,7 +106,7 @@ public class VClientes {
                 if (texto.trim().isEmpty()) {
                     sorter.setRowFilter(null);
                 } else {
-                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto));
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(texto)));
                 }
             }
         });
@@ -195,7 +196,7 @@ public class VClientes {
                     // Sí depende algún elemento le pregunto si quiere eliminarlo
                     int respuesta = JOptionPane.showConfirmDialog(
                             null,
-                            "De este cliente dependen " + CEntrada.seleccionarPorDni(dni).size() + " entradas y "+CVisita.seleccionarPorDni(dni).size()+" visitas\n¿Quieres eliminarlas además de eliminar el cliente con DNi: "+tabla.getValueAt(filaModelo, 0)+"?",
+                            "De este cliente dependen " + CEntrada.seleccionarPorDni(dni).size() + " entradas y "+CVisita.seleccionarPorDni(dni).size()+" visitas\n¿Quieres eliminarlas además de eliminar el cliente con DNi: "+modelo.getValueAt(filaModelo, 0)+"?",
                             "Confirmación",
                             JOptionPane.YES_NO_OPTION
                     );
@@ -209,7 +210,7 @@ public class VClientes {
                 } else {
                     int respuesta = JOptionPane.showConfirmDialog(
                             null,
-                            "¿Estas seguro de que quieres eliminar el cliente con el numero: "+ tabla.getValueAt(filaModelo, 0) +"?",
+                            "¿Estas seguro de que quieres eliminar el cliente con el numero: "+ modelo.getValueAt(filaModelo, 0) +"?",
                             "Confirmación",
                             JOptionPane.YES_NO_OPTION
                     );

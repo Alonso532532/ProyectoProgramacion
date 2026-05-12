@@ -17,8 +17,8 @@ public class VAModificar {
     private static String nombreAnterior = "";
     private static String numeroDeZonaAnterior = "";
 
-    private static TextField tFC1 = new TextField();
-    private static TextField tFC2 = new TextField();
+    private static JTextField tFC1 = new JTextField();
+    private static JTextField tFC2 = new JTextField();
     //Creo el combobox
     private static JComboBox<String> cBC1 = new JComboBox<>();
 
@@ -65,19 +65,19 @@ public class VAModificar {
 
         botonModificar.addActionListener(a -> {
             // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
-            if (!tFC2.getText().equals(nombreAnterior) || !cBC1.getSelectedItem().toString().contains(numeroDeZonaAnterior)){
+            if (!tFC2.getText().equals(nombreAnterior) || !cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-")).equals(numeroDeZonaAnterior)){
                 // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
                 JFrame mensaje = new JFrame("Proceso de modificación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        resp = CAtracciones.modificar(tFC1.getText(), nombreAnterior, numeroDeZonaAnterior, tFC2.getText(), cBC1.getSelectedItem().toString().substring(0, 1)),
+                        resp = CAtracciones.modificar(tFC1.getText(), nombreAnterior, numeroDeZonaAnterior, tFC2.getText(), cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"))),
                         "Información sobre la operación",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Atraccion modificada con éxito")) {
                     nombreAnterior = tFC2.getText();
-                    numeroDeZonaAnterior = cBC1.getSelectedItem().toString().substring(0, 1);
+                    numeroDeZonaAnterior = cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"));
                     VAtracciones.actualizarTabla(modelo);
                 }
             } else {
@@ -113,7 +113,7 @@ public class VAModificar {
         // Busco la opción para poner por defécto
         int index = 0;
         for (int i = 0; i < opciones.length; i++) {
-             if (opciones[i].contains(numeroDeZona)) index = i;
+            if (opciones[i].toString().substring(0, opciones[i].indexOf("-")).equals(numeroDeZona)) index = i;
         }
 
         cBC1.setSelectedIndex(index);
@@ -126,6 +126,6 @@ public class VAModificar {
     }
 
     public static void ocultar(){
-        fModificar.dispose();
+        fModificar.setVisible(false);
     }
 }

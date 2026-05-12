@@ -12,7 +12,7 @@ public class VZAnadir {
     // Este modelo sirve para actualizar la tabla de la vista
     private static DefaultTableModel modelo;
 
-    private static TextField tFC1 = new TextField();
+    private static JTextField tFC1 = new JTextField();
 
     // Este método inicializa todo de la ventana
     public static void construir() {
@@ -79,6 +79,6 @@ public class VZAnadir {
     }
 
     public static void ocultar(){
-        fAnadir.dispose();
+        fAnadir.setVisible(false);
     }
 }

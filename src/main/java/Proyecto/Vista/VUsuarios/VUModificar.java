@@ -16,7 +16,7 @@ public class VUModificar {
     private static String nombreAnterior = "";
     private static boolean esAdminAnterior = false;
 
-    private static TextField tFC1 = new TextField();
+    private static JTextField tFC1 = new JTextField();
     private static JPasswordField tFC2 = new JPasswordField();
     private static JCheckBox tFC3 = new JCheckBox();
 
@@ -117,6 +117,6 @@ public class VUModificar {
     }
 
     public static void ocultar(){
-        fModificar.dispose();
+        fModificar.setVisible(false);
     }
 }

@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.util.regex.Pattern;
 
 
 public class VEntradas {
@@ -32,7 +33,7 @@ public class VEntradas {
 
         // Creo el menú de arriba y los botones
         JPanel arriba = new JPanel();
-        arriba.setLayout(new GridLayout(1, 10, 10, 10));
+        arriba.setLayout(new GridLayout(1, 0, 10, 10));
         JButton botonN1 = new JButton("Cerrar sesión");
         JButton botonN2 = new JButton("Atracciónes");
         JButton botonN3 = new JButton("Zonas");
@@ -104,7 +105,7 @@ public class VEntradas {
                 if (texto.trim().isEmpty()) {
                     sorter.setRowFilter(null);
                 } else {
-                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto));
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(texto)));
                 }
             }
         });
@@ -187,7 +188,7 @@ public class VEntradas {
                 // Le pregunto si quiere eliminarlo
                 int respuesta = JOptionPane.showConfirmDialog(
                         null,
-                        "¿Estas seguro de que quieres eliminar la entrada con el numero: "+ tabla.getValueAt(filaModelo, 0) +"?",
+                        "¿Estas seguro de que quieres eliminar la entrada con el numero: "+ modelo.getValueAt(filaModelo, 0) +"?",
                         "Confirmación",
                         JOptionPane.YES_NO_OPTION
                 );

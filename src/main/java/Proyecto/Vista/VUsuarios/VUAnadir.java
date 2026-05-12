@@ -12,7 +12,7 @@ public class VUAnadir {
     // Este modelo sirve para actualizar la tabla de la vista
     private static DefaultTableModel modelo;
 
-    private static TextField tFC1 = new TextField();
+    private static JTextField tFC1 = new JTextField();
     private static JPasswordField tFC2 = new JPasswordField();
     private static JCheckBox cBC1 = new JCheckBox();
 
@@ -93,6 +93,6 @@ public class VUAnadir {
     }
 
     public static void ocultar(){
-        fAnadir.dispose();
+        fAnadir.setVisible(false);
     }
 }

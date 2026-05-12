@@ -13,7 +13,7 @@ public class VAAnadir {
     // Este modelo sirve para actualizar la tabla de la vista
     private static DefaultTableModel modelo;
 
-    private static TextField tFC1 = new TextField();
+    private static JTextField tFC1 = new JTextField();
 
     // Creo el combobox y le añado las opciones
     private static JComboBox<String> cBC1 = new JComboBox<>();
@@ -66,7 +66,7 @@ public class VAAnadir {
                 JFrame mensaje = new JFrame("Operación para añadir atracciones");
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        CAtracciones.anadir(tFC1.getText(), cBC1.getSelectedItem().toString().substring(0,1)),
+                        CAtracciones.anadir(tFC1.getText(), cBC1.getSelectedItem().toString().substring(0,cBC1.getSelectedItem().toString().indexOf("-"))),
                         "Información sobre la operación",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -93,6 +93,6 @@ public class VAAnadir {
     }
 
     public static void ocultar(){
-        fAnadir.dispose();
+        fAnadir.setVisible(false);
     }
 }

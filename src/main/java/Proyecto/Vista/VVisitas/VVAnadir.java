@@ -17,12 +17,12 @@ public class VVAnadir {
     // Este modelo sirve para actualizar la tabla de la vista
     private static DefaultTableModel modelo;
 
-    private static TextField tFC1 = new TextField();
+    private static JTextField tFC1 = new JTextField();
     // Creo el combobox y le añado las opciones
     private static JComboBox<String> cBC1 = new JComboBox<>();
     // Creo un desplegable para la fecha
     private static JDateChooser tFC2 = new JDateChooser();
-    private static TextField tFC3 = new TextField();
+    private static JTextField tFC3 = new JTextField();
 
     // Este método inicializa todo de la ventana
     public static void construir() {
@@ -98,7 +98,7 @@ public class VVAnadir {
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        resp = CVisita.anadir(tFC1.getText(), cBC1.getSelectedItem().toString().substring(0,1), formato.format(tFC2.getDate())+"T"+tFC3.getText()),
+                        resp = CVisita.anadir(tFC1.getText(), cBC1.getSelectedItem().toString().substring(0,cBC1.getSelectedItem().toString().indexOf("-")), formato.format(tFC2.getDate())+"T"+tFC3.getText()),
                         "Información sobre la operación",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -129,6 +129,6 @@ public class VVAnadir {
     }
 
     public static void ocultar(){
-        fAnadir.dispose();
+        fAnadir.setVisible(false);
     }
 }

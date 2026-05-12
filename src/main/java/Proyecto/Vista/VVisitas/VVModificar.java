@@ -24,12 +24,12 @@ public class VVModificar {
     private static Date fechaAnterior = new Date();
     private static String horaAnterior = "";
 
-    private static TextField tFC1 = new TextField();
+    private static JTextField tFC1 = new JTextField();
     //Creo el combobox
     private static JComboBox<String> cBC1 = new JComboBox<>();
     // Creo un desplegable para la fecha
     private static JDateChooser tFC2 = new JDateChooser();
-    private static TextField tFC3 = new TextField();
+    private static JTextField tFC3 = new JTextField();
 
     // Este método inicializa todo de la ventana
     public static void construir() {
@@ -89,7 +89,7 @@ public class VVModificar {
         botonModificar.addActionListener(a -> {
             if (tFC2.getDate()!=null) {
                 // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
-                if (!tFC1.getText().equals(dniAnterior) || !cBC1.getSelectedItem().toString().contains(numeroDeZonaAnterior) || !tFC2.getDate().equals(fechaAnterior) || !tFC3.getText().equals(horaAnterior)) {
+                if (!tFC1.getText().equals(dniAnterior) || !cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-")).equals(numeroDeZonaAnterior) || !tFC2.getDate().equals(fechaAnterior) || !tFC3.getText().equals(horaAnterior)) {
 
                     // Instancio una clase que me permite parsear el resultado que me da el desplegable de la fecha al formato que necesito
                     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -99,13 +99,13 @@ public class VVModificar {
                     String resp;
                     JOptionPane.showMessageDialog(
                             mensaje,
-                            resp = CVisita.modificar(dniAnterior, numeroDeZonaAnterior, formato.format(fechaAnterior) + "T" + horaAnterior, tFC1.getText(), cBC1.getSelectedItem().toString().substring(0, 1), formato.format(tFC2.getDate()) + "T" + tFC3.getText()),
+                            resp = CVisita.modificar(dniAnterior, numeroDeZonaAnterior, formato.format(fechaAnterior) + "T" + horaAnterior, tFC1.getText(), cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-")), formato.format(tFC2.getDate()) + "T" + tFC3.getText()),
                             "Información sobre la operación",
                             JOptionPane.INFORMATION_MESSAGE
                     );
                     if (resp.equals("Visita modificada con éxito")) {
                         dniAnterior = tFC1.getText();
-                        numeroDeZonaAnterior = cBC1.getSelectedItem().toString().substring(0, 1);
+                        numeroDeZonaAnterior = cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"));
                         fechaAnterior = tFC2.getDate();
                         horaAnterior = tFC3.getText();
                         VVisitas.actualizarTabla(modelo);
@@ -156,9 +156,8 @@ public class VVModificar {
         // Busco la opción para poner por defécto
         int index = 0;
         for (int i = 0; i < opciones.length; i++) {
-            if (opciones[i].contains(numeroDeZona)) index = i;
+            if (opciones[i].toString().substring(0, opciones[i].indexOf("-")).equals(numeroDeZona)) index = i;
         }
-
         cBC1.setSelectedIndex(index);
 
         // Parseo la fecha igual que arriba
@@ -173,6 +172,6 @@ public class VVModificar {
     }
 
     public static void ocultar(){
-        fModificar.dispose();
+        fModificar.setVisible(false);
     }
 }
