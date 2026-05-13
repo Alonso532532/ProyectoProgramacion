@@ -51,9 +51,13 @@ public class Atracciones {
 
     public boolean setNumeroDeZona(String numeroDeZonaString) {
         int numeroDeZona = Integer.parseInt(numeroDeZonaString);
-        if (DZonas.comprobarNumeroDeZona(numeroDeZona)){
-            this.numeroDeZona = numeroDeZona;
-            return true;
+        try {
+            if (DZonas.comprobarNumeroDeZona(numeroDeZona)) {
+                this.numeroDeZona = numeroDeZona;
+                return true;
+            }
+        } catch (RuntimeException e){
+            return false;
         }
         return false;
     }

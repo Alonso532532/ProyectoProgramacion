@@ -42,9 +42,13 @@ public class Visita {
     }
 
     public boolean setDni(String dni) {
-        if (DClientes.comprobarPorDni(dni)){
-            this.dni = dni;
-            return true;
+        try {
+            if (DClientes.comprobarPorDni(dni)){
+                this.dni = dni;
+                return true;
+            }
+        } catch (RuntimeException e){
+            return false;
         }
         return false;
     }
@@ -55,9 +59,13 @@ public class Visita {
 
     public boolean setNumeroDeZona(String numeroDeZonaString) {
         int numeroDeZona = Integer.parseInt(numeroDeZonaString);
-        if (DZonas.comprobarNumeroDeZona(numeroDeZona)) {
-            this.numeroDeZona = numeroDeZona;
-            return true;
+        try {
+            if (DZonas.comprobarNumeroDeZona(numeroDeZona)) {
+                this.numeroDeZona = numeroDeZona;
+                return true;
+            }
+        } catch (RuntimeException e){
+            return false;
         }
         return false;
     }

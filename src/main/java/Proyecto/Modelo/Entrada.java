@@ -71,9 +71,13 @@ public class Entrada {
     }
 
     public boolean setDni(String dni) {
-        if (DClientes.comprobarPorDni(dni)){
-            this.dni = dni;
-            return true;
+        try {
+            if (DClientes.comprobarPorDni(dni)){
+                this.dni = dni;
+                return true;
+            }
+        } catch (RuntimeException e){
+            return false;
         }
         return false;
     }

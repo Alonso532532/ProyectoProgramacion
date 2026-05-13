@@ -121,7 +121,7 @@ public class VVModificar {
                     );
                 }
             } else {
-                // Si no hay cambios en los campos
+                // Si la fecha es inválida
                 JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
