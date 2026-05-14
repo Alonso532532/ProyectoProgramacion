@@ -83,23 +83,23 @@ public class VVAnadir {
             // En cuanto se active al botón se comprueba que no hayan campos vacíos
             // Si la fecha es incorrecta o está vacía el campo devuelve null
             if (tFC1.getText().isEmpty() || tFC2.getDate()==null || tFC3.getText().isEmpty()) {
-                JFrame mensaje = new JFrame("Error de formato");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "Error, uno o varios campos están vacíos o la fecha no se a introducido correctamente",
-                        "Información sobre la operación",
+                        "Error de formato",
                         JOptionPane.ERROR_MESSAGE
                 );
             } else {
                 // Instancio una clase que me permite parsear el resultado que me da el desplegable de la fecha al formato que necesito
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
-                JFrame mensaje = new JFrame("Operación para añadir visitas");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
                         resp = CVisita.anadir(tFC1.getText(), cBC1.getSelectedItem().toString().substring(0,cBC1.getSelectedItem().toString().indexOf("-")), formato.format(tFC2.getDate())+"T"+tFC3.getText()),
-                        "Información sobre la operación",
+                        "Operación para añadir visitas",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Visita introducida con éxito")) {

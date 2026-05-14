@@ -45,20 +45,20 @@ public class VZAnadir {
         botonAnadir.addActionListener(a -> {
             // En cuanto se active al botón se comprueba que no hayan campos vacíos
             if (tFC1.getText().isEmpty()) {
-                JFrame mensaje = new JFrame("Error de formato");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "Error, el campo está vacío",
-                        "Información sobre la operación",
+                        "Error de formato",
                         JOptionPane.ERROR_MESSAGE
                 );
             } else {
-                JFrame mensaje = new JFrame("Operación para añadir atracciones");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
                         resp = CZonas.anadir(tFC1.getText()),
-                        "Información sobre la operación",
+                        "Operación para añadir atracciones",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Zona introducida con éxito")) {

@@ -95,12 +95,12 @@ public class VVModificar {
                     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
                     // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
-                    JFrame mensaje = new JFrame("Proceso de modificación");
+                    JFrame mensaje = new JFrame("Información sobre la operación");
                     String resp;
                     JOptionPane.showMessageDialog(
                             mensaje,
                             resp = CVisita.modificar(dniAnterior, numeroDeZonaAnterior, formato.format(fechaAnterior) + "T" + horaAnterior, tFC1.getText(), cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-")), formato.format(tFC2.getDate()) + "T" + tFC3.getText()),
-                            "Información sobre la operación",
+                            "Proceso de modificación",
                             JOptionPane.INFORMATION_MESSAGE
                     );
                     if (resp.equals("Visita modificada con éxito")) {

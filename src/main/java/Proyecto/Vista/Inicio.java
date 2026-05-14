@@ -19,13 +19,16 @@ import Proyecto.Vista.VZonas.VZModificar;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public final class Inicio {
     static boolean primero = true;
 
     public static void ejecutar() {
-
-
         // Creo el frame y lo configuro
         JFrame base = new JFrame("Inicio");
         base.setLocationRelativeTo(null);
@@ -221,10 +224,40 @@ public final class Inicio {
         base.add(medioR);
         base.add(abajoR);
 
+        // Registro el inicio del programa junto con la fecha y hora en el archivo "src/main/java/Proyecto/Conexiones"
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/java/Proyecto/Conexiones", true))){
+            if (primero){
+                bufferedWriter.write("<----------- Inicio del programa, Hora: "+ LocalDateTime.now().toString().substring(0,19)+" ----------->\n");
+            }
+        }catch (IOException e){
+            JFrame mensaje = new JFrame("Información sobre la operación");
+            JOptionPane.showMessageDialog(
+                    mensaje,
+                    "Error al registrar el inicio del programa",
+                    "Error de escritura",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+
+
         botonI.addActionListener(a->{
             if (!campoCI.getText().isEmpty() && !campoUI.getText().isEmpty()){
                 try {
                     VAtracciones.ejecutar(CUsuarios.comprobarInicioDeSesion(new Usuario(campoUI.getText(), campoCI.getText(), false, false)), base.getLocation(), base.getSize());
+
+                    // Guardo el inicio de sesión con la hora y el usuario en el archivo "src/main/java/Proyecto/Conexiones"
+                    try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/main/java/Proyecto/Conexiones", true))){
+                        bufferedWriter.write("Inicio de sesión, Usuario: "+campoUI.getText()+", Hora: "+ LocalDateTime.now().toString().substring(0,19)+"\n");
+                    }catch (IOException e){
+                        JFrame mensaje = new JFrame("Información sobre la operación");
+                        JOptionPane.showMessageDialog(
+                                mensaje,
+                                "Error al registrar el inicio de sesión",
+                                "Error de escritura",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                    // Inicializo todas las vitas que es necesario inicializar solo una vez
                     if (primero) {
                         VAModificar.construir();
                         VCModificar.construir();
@@ -241,7 +274,7 @@ public final class Inicio {
                         VZAnadir.construir();
                         primero = false;
                     }
-                    base.dispose();
+                    base.setVisible(false);
                 } catch (IllegalArgumentException e){
                     JFrame mensaje = new JFrame("Información sobre el início de sesión");
                     JOptionPane.showMessageDialog(

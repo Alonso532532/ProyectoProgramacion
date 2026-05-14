@@ -19,10 +19,8 @@ public final class Conexion {
             return DriverManager.getConnection(parametros[0],parametros[1],parametros[2]);
         } catch (SQLException e) {
             throw new SQLException("Error en la conexión de la base de datos");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new SQLException("Error al leer el archivo con las credenciales para conectarse a la BBDD");
         }
     }
 }

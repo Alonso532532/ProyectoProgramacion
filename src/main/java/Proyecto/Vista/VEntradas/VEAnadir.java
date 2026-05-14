@@ -60,20 +60,20 @@ public class VEAnadir {
         botonAnadir.addActionListener(a -> {
             // En cuanto se active al botón se comprueba que no hayan campos vacíos
             if (tFC1.getText().isEmpty() || tFC2.getText().isEmpty()) {
-                JFrame mensaje = new JFrame("Error de formato");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "Error, uno o varios campos están vacíos",
-                        "Información sobre la operación",
+                        "Error de formato",
                         JOptionPane.ERROR_MESSAGE
                 );
             } else {
-                JFrame mensaje = new JFrame("Operación para añadir entradas");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
                         resp = CEntrada.anadir((String) cBC1.getSelectedItem(), tFC1.getText(), tFC2.getText()),
-                        "Información sobre la operación",
+                        "Operación para añadir entradas",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Entrada introducida con éxito")) {

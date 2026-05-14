@@ -60,12 +60,12 @@ public class VZModificar {
             // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
             if (!tFC2.getText().equals(nombreAnterior)){
                 // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
-                JFrame mensaje = new JFrame("Proceso de modificación");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
                         resp = CZonas.modificar(numeroDeZona, nombreAnterior, tFC2.getText()),
-                        "Información sobre la operación",
+                        "Proceso de modificación",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Zona modificada con éxito")) {

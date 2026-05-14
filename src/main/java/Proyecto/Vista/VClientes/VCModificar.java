@@ -93,11 +93,11 @@ public class VCModificar {
                             modificar = false;
                         }
                     } catch (IllegalArgumentException e){
-                        JFrame mensaje = new JFrame("Error de formato");
+                        JFrame mensaje = new JFrame("Información sobre la operación");
                         JOptionPane.showMessageDialog(
                                 mensaje,
                                 "Han ocurrido errores con los datos del cliente, causa:\n"+e.getMessage(),
-                                "Información sobre la operación",
+                                "Error de formato",
                                 JOptionPane.ERROR_MESSAGE
                         );
                         modificar = false;
@@ -107,12 +107,12 @@ public class VCModificar {
                 }
                 if (modificar) {
                     // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
-                    JFrame mensaje = new JFrame("Proceso de modificación");
+                    JFrame mensaje = new JFrame("Información sobre la operación");
                     String resp;
                     JOptionPane.showMessageDialog(
                             mensaje,
                             resp = CClientes.modificar(dniAnterior, edadAnterior, nombreAnterior, tFC1.getText(), tFC2.getText(), tFC3.getText()),
-                            "Información sobre la operación",
+                            "Proceso de modificación",
                             JOptionPane.INFORMATION_MESSAGE
                     );
                     if (resp.equals("Cliente modificado con éxito")) {

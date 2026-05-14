@@ -215,7 +215,7 @@ public class VAtracciones {
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "No hay nada seleccionado",
-                        "Información sobre la operación",
+                        "Error de selección",
                         JOptionPane.ERROR_MESSAGE
                 );
             }
@@ -232,7 +232,7 @@ public class VAtracciones {
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "No hay nada seleccionado",
-                        "Información sobre la operación",
+                        "Error de selección",
                         JOptionPane.ERROR_MESSAGE
                 );
             }

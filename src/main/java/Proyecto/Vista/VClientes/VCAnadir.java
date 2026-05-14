@@ -53,20 +53,20 @@ public class VCAnadir {
 
         botonAnadir.addActionListener(a -> {
             if (tFC1.getText().isEmpty() || tFC2.getText().isEmpty() || tFC3.getText().isEmpty()) {
-                JFrame mensaje = new JFrame("Error de formato");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "Error, uno o varios campos están vacíos",
-                        "Información sobre la operación",
+                        "Error de formato",
                         JOptionPane.ERROR_MESSAGE
                 );
             } else {
-                JFrame mensaje = new JFrame("Operación para añadir clientes");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
                         resp = CClientes.anadir(tFC1.getText(), tFC2.getText(), tFC3.getText()),
-                        "Información sobre la operación",
+                        "Operación para añadir clientes",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Cliente introducido con éxito")) {

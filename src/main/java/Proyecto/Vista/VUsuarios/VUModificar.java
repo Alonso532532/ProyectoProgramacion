@@ -71,12 +71,12 @@ public class VUModificar {
             if (!tFC1.getText().equals(nombreAnterior) || !tFC2.getText().isEmpty() || tFC3.isSelected() != esAdminAnterior){
 
                 // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
-                JFrame mensaje = new JFrame("Proceso de modificación");
+                JFrame mensaje = new JFrame("Información sobre la operación");
                 String resp;
                 JOptionPane.showMessageDialog(
                         mensaje,
                         resp = CUsuarios.modificar(nombreAnterior, esAdminAnterior, tFC1.getText(), tFC2.getText(), tFC3.isSelected()),
-                        "Información sobre la operación",
+                        "Proceso de modificación",
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 if (resp.equals("Usuario modificado con éxito")) {

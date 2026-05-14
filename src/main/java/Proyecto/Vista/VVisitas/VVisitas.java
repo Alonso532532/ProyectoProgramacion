@@ -210,14 +210,11 @@ public class VVisitas {
                 }
                 // En caso de que haya seleccionado no o haya cerrado la ventana no se elmina nada
 
-
-
-
             } else {
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "No hay nada seleccionado",
-                        "Información sobre la operación",
+                        "Error de selección",
                         JOptionPane.ERROR_MESSAGE
                 );
             }
@@ -234,7 +231,7 @@ public class VVisitas {
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "No hay nada seleccionado",
-                        "Información sobre la operación",
+                        "Error de selección",
                         JOptionPane.ERROR_MESSAGE
                 );
             }

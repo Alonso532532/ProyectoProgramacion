@@ -237,7 +237,7 @@ public class VClientes {
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "No hay nada seleccionado",
-                        "Información sobre la operación",
+                        "Error de selección",
                         JOptionPane.ERROR_MESSAGE
                 );
             }
@@ -254,7 +254,7 @@ public class VClientes {
                 JOptionPane.showMessageDialog(
                         mensaje,
                         "No hay nada seleccionado",
-                        "Información sobre la operación",
+                        "Error de selección",
                         JOptionPane.ERROR_MESSAGE
                 );
             }
