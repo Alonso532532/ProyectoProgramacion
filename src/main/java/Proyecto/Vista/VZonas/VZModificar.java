@@ -57,29 +57,41 @@ public class VZModificar {
         fModificar.add(panelS, BorderLayout.SOUTH);
 
         botonModificar.addActionListener(a -> {
-            // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
-            if (!tFC2.getText().equals(nombreAnterior)){
-                // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
-                JFrame mensaje = new JFrame("Información sobre la operación");
-                String resp;
-                JOptionPane.showMessageDialog(
-                        mensaje,
-                        resp = CZonas.modificar(numeroDeZona, nombreAnterior, tFC2.getText()),
-                        "Proceso de modificación",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                if (resp.equals("Zona modificada con éxito")) {
-                    numeroDeZona = tFC1.getText();
-                    nombreAnterior = tFC2.getText();
-                    VZonas.actualizarTabla(modelo);
+            // Compruebo que el campo no esté vacío
+            if (!tFC2.getText().isEmpty()) {
+                // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
+                if (!tFC2.getText().equals(nombreAnterior)){
+                    // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
+                    JFrame mensaje = new JFrame("Información sobre la operación");
+                    String resp;
+                    JOptionPane.showMessageDialog(
+                            mensaje,
+                            resp = CZonas.modificar(numeroDeZona, nombreAnterior, tFC2.getText()),
+                            "Proceso de modificación",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    if (resp.equals("Zona modificada con éxito")) {
+                        numeroDeZona = tFC1.getText();
+                        nombreAnterior = tFC2.getText();
+                        VZonas.actualizarTabla(modelo);
+                    }
+                } else {
+                    // Si no hay cambios en los campos
+                    JFrame mensaje = new JFrame("Información sobre la operación");
+                    JOptionPane.showMessageDialog(
+                            mensaje,
+                            "No han habido cambios en los valores",
+                            "Sin cambios",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                 }
             } else {
-                // Si no hay cambios en los campos
+                // Si hay campos vacíos
                 JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        "No han habido cambios en los valores",
-                        "Sin cambios",
+                        "El campo del nombre está vacío",
+                        "Error de campos vacíos",
                         JOptionPane.ERROR_MESSAGE
                 );
             }

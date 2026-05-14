@@ -28,7 +28,7 @@ public class Zonas {
     }
 
     public boolean setNombre(String nombre) {
-        Matcher matcher = Pattern.compile("[a-záéíóúÁÉÍÓÚñÑ ]+").matcher(nombre);
+        Matcher matcher = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+").matcher(nombre);
         if (matcher.matches()){
             this.nombre = nombre;
             return true;

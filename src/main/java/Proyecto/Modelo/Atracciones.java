@@ -18,7 +18,7 @@ public class Atracciones {
 
     public Atracciones(String nombre, String numeroDeZona) {
         String error = "";
-        if (!setNombre(nombre)) error+="El nombre contiene carácteres no permitidos, solo se permiten letras y espacios\n";
+        if (!setNombre(nombre)) error+="El nombre contiene carácteres no permitidos, solo se permiten letras, espacios y números\n";
         if (nombre.length()>50) error+="Nombre demasiado largo, máximo 50 carácteres\n";
         try {
             if (!setNumeroDeZona(numeroDeZona)) error+="Numero de zona inexistente\n";
@@ -37,7 +37,7 @@ public class Atracciones {
     }
 
     public boolean setNombre(String nombre) {
-        Matcher matcher = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+").matcher(nombre);
+        Matcher matcher = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+").matcher(nombre);
         if (matcher.matches()){
             this.nombre = nombre;
             return true;

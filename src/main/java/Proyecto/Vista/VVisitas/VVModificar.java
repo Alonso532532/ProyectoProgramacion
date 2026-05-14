@@ -87,7 +87,8 @@ public class VVModificar {
         fModificar.add(panelS, BorderLayout.SOUTH);
 
         botonModificar.addActionListener(a -> {
-            if (tFC2.getDate()!=null) {
+            // Compruebo que todos los campos tengan valores
+            if (tFC2.getDate()!=null && !tFC1.getText().isEmpty() && !tFC3.getText().isEmpty()) {
                 // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
                 if (!tFC1.getText().equals(dniAnterior) || !cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-")).equals(numeroDeZonaAnterior) || !tFC2.getDate().equals(fechaAnterior) || !tFC3.getText().equals(horaAnterior)) {
 
@@ -121,12 +122,12 @@ public class VVModificar {
                     );
                 }
             } else {
-                // Si la fecha es inválida
+                // Si hay campos vacíos o la fecha es inválida
                 JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        "La fecha está vacía o es inválida",
-                        "Sin cambios",
+                        "Hay campos vacíos o la fecha es inválida",
+                        "Error de campos vacíos",
                         JOptionPane.ERROR_MESSAGE
                 );
             }

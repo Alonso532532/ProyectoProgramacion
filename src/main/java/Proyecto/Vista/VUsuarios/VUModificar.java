@@ -67,36 +67,46 @@ public class VUModificar {
         fModificar.add(panelS, BorderLayout.SOUTH);
 
         botonModificar.addActionListener(a -> {
-            // En cuanto se active al botón se comprueba que se haya modificado al menos un campo, la contraseña no la cuento para que no se sepa si es igual a la introducida
-            if (!tFC1.getText().equals(nombreAnterior) || !tFC2.getText().isEmpty() || tFC3.isSelected() != esAdminAnterior){
+            // Compruebo que todos los campos tengan valores
+            if (!tFC1.getText().isEmpty()) {
+                // En cuanto se active al botón se comprueba que se haya modificado al menos un campo, la contraseña no la cuento para que no se sepa si es igual a la introducida
+                if (!tFC1.getText().equals(nombreAnterior) || !tFC2.getText().isEmpty() || tFC3.isSelected() != esAdminAnterior){
+                    // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
+                    JFrame mensaje = new JFrame("Información sobre la operación");
+                    String resp;
+                    JOptionPane.showMessageDialog(
+                            mensaje,
+                            resp = CUsuarios.modificar(nombreAnterior, esAdminAnterior, tFC1.getText(), tFC2.getText(), tFC3.isSelected()),
+                            "Proceso de modificación",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    if (resp.equals("Usuario modificado con éxito")) {
+                        nombreAnterior = tFC1.getText();
+                        tFC2.setText("");
+                        esAdminAnterior = tFC3.isSelected();
+                        VUsuarios.actualizarTabla(modelo);
+                    }
 
-                // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
-                JFrame mensaje = new JFrame("Información sobre la operación");
-                String resp;
-                JOptionPane.showMessageDialog(
-                        mensaje,
-                        resp = CUsuarios.modificar(nombreAnterior, esAdminAnterior, tFC1.getText(), tFC2.getText(), tFC3.isSelected()),
-                        "Proceso de modificación",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                if (resp.equals("Usuario modificado con éxito")) {
-                    nombreAnterior = tFC1.getText();
-                    tFC2.setText("");
-                    esAdminAnterior = tFC3.isSelected();
-                    VUsuarios.actualizarTabla(modelo);
+                } else {
+                    // Si no hay cambios en los campos
+                    JFrame mensaje = new JFrame("Información sobre la operación");
+                    JOptionPane.showMessageDialog(
+                            mensaje,
+                            "No han habido cambios en los valores",
+                            "Sin cambios",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                 }
-
             } else {
-                // Si no hay cambios en los campos
+                // Si hay campos vacíos
                 JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        "No han habido cambios en los valores",
-                        "Sin cambios",
+                        "Hay campos vacíos",
+                        "Error de campos vacíos",
                         JOptionPane.ERROR_MESSAGE
                 );
             }
-
         });
     }
 

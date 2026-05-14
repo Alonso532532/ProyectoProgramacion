@@ -64,7 +64,7 @@ public class Clientes {
     }
 
     public boolean setNombre(String nombre) {
-        Matcher matcher = Pattern.compile("[A-Za-zñáéíóúÁÉÍÓÚ ]+").matcher(nombre);
+        Matcher matcher = Pattern.compile("[A-Za-zñÑáéíóúÁÉÍÓÚ ]+").matcher(nombre);
         if (matcher.matches()){
             this.nombre = nombre;
             return true;

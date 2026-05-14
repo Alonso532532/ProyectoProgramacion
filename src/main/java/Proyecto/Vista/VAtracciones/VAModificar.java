@@ -64,29 +64,41 @@ public class VAModificar {
         fModificar.add(panelS, BorderLayout.SOUTH);
 
         botonModificar.addActionListener(a -> {
-            // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
-            if (!tFC2.getText().equals(nombreAnterior) || !cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-")).equals(numeroDeZonaAnterior)){
-                // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
-                JFrame mensaje = new JFrame("Proceso de modificación");
-                String resp;
-                JOptionPane.showMessageDialog(
-                        mensaje,
-                        resp = CAtracciones.modificar(tFC1.getText(), nombreAnterior, numeroDeZonaAnterior, tFC2.getText(), cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"))),
-                        "Información sobre la operación",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                if (resp.equals("Atraccion modificada con éxito")) {
-                    nombreAnterior = tFC2.getText();
-                    numeroDeZonaAnterior = cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"));
-                    VAtracciones.actualizarTabla(modelo);
+            // Compruebo que todos los campos tengan valores
+            if (!tFC1.getText().isEmpty() && !tFC2.getText().isEmpty()) {
+                // En cuanto se active al botón se comprueba que se haya modificado almenos un campo
+                if (!tFC2.getText().equals(nombreAnterior) || !cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-")).equals(numeroDeZonaAnterior)){
+                    // Se mostrará el mensaje que responda la modificación, después asigno los nuevos valores "antiguos" y actualizo la tabla
+                    JFrame mensaje = new JFrame("Proceso de modificación");
+                    String resp;
+                    JOptionPane.showMessageDialog(
+                            mensaje,
+                            resp = CAtracciones.modificar(tFC1.getText(), nombreAnterior, numeroDeZonaAnterior, tFC2.getText(), cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"))),
+                            "Información sobre la operación",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    if (resp.equals("Atraccion modificada con éxito")) {
+                        nombreAnterior = tFC2.getText();
+                        numeroDeZonaAnterior = cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"));
+                        VAtracciones.actualizarTabla(modelo);
+                    }
+                } else {
+                    // Si no hay cambios en los campos
+                    JFrame mensaje = new JFrame("Información sobre la operación");
+                    JOptionPane.showMessageDialog(
+                            mensaje,
+                            "No han habido cambios en los valores",
+                            "Sin cambios",
+                            JOptionPane.ERROR_MESSAGE
+                    );
                 }
             } else {
-                // Si no hay cambios en los campos
+                // Si hay campos vacíos
                 JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(
                         mensaje,
-                        "No han habido cambios en los valores",
-                        "Sin cambios",
+                        "Hay campos vacíos",
+                        "Error de campos vacíos",
                         JOptionPane.ERROR_MESSAGE
                 );
             }
