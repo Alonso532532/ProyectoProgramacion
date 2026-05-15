@@ -46,12 +46,12 @@ public final class CZonas {
 
 
     // Modifico los valores mediante la clave
-    public static String modificar(String numeroDeZona, String nobmreAnterior, String nombreNuevo){
+    public static String modificar(String numeroDeZona, String nombreAnterior, String nombreNuevo){
 
         try {
 
             Zonas zonaNueva = new Zonas(nombreNuevo);
-            Zonas zonaAntigua = new Zonas(nobmreAnterior);
+            Zonas zonaAntigua = new Zonas(nombreAnterior);
 
             if (!zonaAntigua.getNombre().equals(zonaNueva.getNombre())){
                 DZonas.cambiarNombre(Integer.parseInt(numeroDeZona), nombreNuevo);

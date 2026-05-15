@@ -9,13 +9,17 @@ import java.awt.*;
 
 public class VCAnadir {
     private static JFrame fAnadir = new JFrame();
+
+    // Este modelo sirve para actualizar la tabla de la vista
     private static DefaultTableModel modelo;
 
     private static JTextField tFC1 = new JTextField();
     private static JTextField tFC2 = new JTextField();
     private static JTextField tFC3 = new JTextField();
 
+    // Este método inicializa todo de la ventana
     public static void construir() {
+        // Hago que no se pueda cambiar el tamaño a la ventana
         fAnadir.setResizable(false);
 
         fAnadir.setTitle("Añadir clientes");
@@ -52,6 +56,7 @@ public class VCAnadir {
         fAnadir.add(panelS, BorderLayout.SOUTH);
 
         botonAnadir.addActionListener(a -> {
+            // En cuanto se active al botón se comprueba que no hayan campos vacíos
             if (tFC1.getText().isEmpty() || tFC2.getText().isEmpty() || tFC3.getText().isEmpty()) {
                 JFrame mensaje = new JFrame("Información sobre la operación");
                 JOptionPane.showMessageDialog(

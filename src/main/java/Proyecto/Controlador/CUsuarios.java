@@ -25,11 +25,11 @@ public final class CUsuarios {
             }
         }catch (IllegalArgumentException e){
             // Fallos producidos al intentar insertar datos incorrectos
-            return "Han ocurrido errores con los datos de la entrada, causa:\n"+e.getMessage();
+            return "Han ocurrido errores con los datos del usuario, causa:\n"+e.getMessage();
 
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la entrada, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la introducción del usuario, causa:\n"+e.getMessage();
         }
     }
 
@@ -47,12 +47,17 @@ public final class CUsuarios {
             Usuario usuarioAnterior = new Usuario(nombreAntiguo, adminAntiguo, false);
             // Si no introduce una nueva contraseña no compruebo la contraseña y tampoco la cambio,
             // también compruebo si cambia el nombre que ese nombre no esté asignado ya a otro usuario
+            // Solo son para validar los campos
+                // Cambio de contraseña y nombre nuevo
             if (!contrasenaNueva.isEmpty() && !nombreAntiguo.equals(nombreNuevo)) {
                 Usuario usuarioNuevo = new Usuario(nombreNuevo, contrasenaNueva, adminNuevo, true);
+                // sin cambio de contraseña y nombre nuevo
             } else if (contrasenaNueva.isEmpty() && !nombreAntiguo.equals(nombreNuevo)){
                 Usuario usuarioNuevo = new Usuario(nombreNuevo, adminNuevo, true);
+                // Cambio de contraseña y mismo nombre
             } else if (!contrasenaNueva.isEmpty()){
                 Usuario usuarioNuevo = new Usuario(nombreNuevo, contrasenaNueva, adminNuevo, false);
+                // No cambia nada
             } else {
                 Usuario usuarioNuevo = new Usuario(nombreNuevo, adminNuevo, false);
             }
