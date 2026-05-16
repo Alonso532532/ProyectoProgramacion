@@ -11,6 +11,8 @@ import Proyecto.Vista.VZonas.VZonas;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
@@ -58,17 +60,31 @@ public class VAtracciones {
         JPanel medio = new JPanel();
         medio.setLayout(new BorderLayout());
 
-        // Para crear la tabla que voy a mostrar tengo que crear un array para la cabecera de la tabla y una matríz con las filas de la tabla
-        String[] cabecea = {"Numero de atraccion", "Nombre", "Numero de zona"};
-        Object[][] datos = new Object[CAtracciones.seleccionarTodo().size()][3];
-        int cont = 0;
+        String[] cabecea = new String[0];
+        Object[][] datos = new Object[0][];
 
-        // Inicializo la matríz
-        for (Atracciones i: CAtracciones.seleccionarTodo()){
-            datos[cont][0] = i.getNumeroDeAtraccion();
-            datos[cont][1] = i.getNombre();
-            datos[cont][2] = i.getNumeroDeZona();
-            cont++;
+        try {
+            // Para crear la tabla que voy a mostrar tengo que crear un array para la cabecera de la tabla y una matríz con las filas de la tabla
+            cabecea = new String[]{"Numero de atracción", "Nombre", "Numero de zona"};
+            datos = new Object[CAtracciones.seleccionarTodo().size()][3];
+            int cont = 0;
+
+            // Inicializo la matríz
+            for (Atracciones i : CAtracciones.seleccionarTodo()) {
+                datos[cont][0] = i.getNumeroDeAtraccion();
+                datos[cont][1] = i.getNombre();
+                datos[cont][2] = i.getNumeroDeZona();
+                cont++;
+            }
+        } catch (RuntimeException e){
+            // En cso de fallo al leer los datos de la BBDD
+            JFrame mensaje = new JFrame("Operación de obtención de datos");
+            JOptionPane.showMessageDialog(
+                    mensaje,
+                    "Ha ocurrido un error al obtener los datos de la BBDD",
+                    "Error de obtención de datos",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
 
         // Para evitar que se puedan modificar datos en la tabla, creo un objeto "DefaultTableModel"
@@ -95,10 +111,10 @@ public class VAtracciones {
         tabla.setRowSorter(sorter);
         JTextField filtro = new JTextField();
 
-        filtro.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-            public void changedUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
-            public void removeUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
-            public void insertUpdate(javax.swing.event.DocumentEvent e) { filtrar(); }
+        filtro.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) { filtrar(); }
+            public void removeUpdate(DocumentEvent e) { filtrar(); }
+            public void insertUpdate(DocumentEvent e) { filtrar(); }
 
             private void filtrar() {
                 String texto = filtro.getText();
@@ -254,13 +270,23 @@ public class VAtracciones {
     public static void actualizarTabla(DefaultTableModel modelo) {
         // Borro las filas antes de añadir las nuevas
         modelo.setRowCount(0);
-
-        for (Atracciones c : CAtracciones.seleccionarTodo()) {
-            modelo.addRow(new Object[]{
-                    c.getNumeroDeAtraccion(),
-                    c.getNombre(),
-                    c.getNumeroDeZona()
-            });
+        try {
+            for (Atracciones c : CAtracciones.seleccionarTodo()) {
+                modelo.addRow(new Object[]{
+                        c.getNumeroDeAtraccion(),
+                        c.getNombre(),
+                        c.getNumeroDeZona()
+                });
+            }
+        } catch (RuntimeException e){
+            // En cso de fallo al leer los datos de la BBDD
+            JFrame mensaje = new JFrame("Operación de obtención de datos");
+            JOptionPane.showMessageDialog(
+                    mensaje,
+                    "Ha ocurrido un error al obtener los datos de la BBDD",
+                    "Error de obtención de datos",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 }

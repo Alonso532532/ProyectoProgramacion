@@ -90,7 +90,7 @@ public final class DVisita {
     public static boolean anadir(Visita visita){
         try {
             Connection connection = Conexion.conectar();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into Visita () values (?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into Visita values (?, ?, ?)");
 
             preparedStatement.setString(1, visita.getDni());
             preparedStatement.setInt(2, visita.getNumeroDeZona());

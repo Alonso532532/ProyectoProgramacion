@@ -45,7 +45,7 @@ public final class CEntrada {
 
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la entrada, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la eliminación de la entrada, causa:\n"+e.getMessage();
         }
     }
 
@@ -74,7 +74,7 @@ public final class CEntrada {
             return "Han ocurrido errores con los datos de la entrada, causa:\n"+e.getMessage();
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la entrada, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la modificación de la entrada, causa:\n"+e.getMessage();
         }
     }
 }

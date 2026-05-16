@@ -40,7 +40,7 @@ public final class CZonas {
 
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la zona, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la eliminación de la zona, causa:\n"+e.getMessage();
         }
     }
 
@@ -61,10 +61,10 @@ public final class CZonas {
 
         }catch (IllegalArgumentException e){
             // Fallos producidos al intentar insertar datos incorrectos
-            return "Han ocurrido errores con los datos del cliente, causa:\n"+e.getMessage();
+            return "Han ocurrido errores con los datos de la zona, causa:\n"+e.getMessage();
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción del cliente, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la modificación de la zona, causa:\n"+e.getMessage();
         }
     }
 }

@@ -41,7 +41,7 @@ public final class CClientes {
 
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción del cliente, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la eliminación del cliente, causa:\n"+e.getMessage();
         }
     }
 
@@ -72,7 +72,7 @@ public final class CClientes {
             return "Han ocurrido errores con los datos del cliente, causa:\n"+e.getMessage();
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción del cliente, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la modificación del cliente, causa:\n"+e.getMessage();
         }
     }
 }

@@ -14,6 +14,10 @@ public class Usuario {
         String error = "";
         if (!setNombre(nombre)) error+="El nombre contiene carácteres no permitidos, solo se permiten letras y espacios\n";
         if (nombre.length()>20) error+="Nombre demasiado largo, máximo 20 carácteres\n";
+        //Compruebo que no hayan espacios irregulares
+        Matcher matcher = Pattern.compile(" {2}").matcher(nombre);
+        if (matcher.find()) error+="El nombre contiene dos o más espacios juntos, solo se permiten espacios únicos\n";
+        if (nombre.equals(" ")) error+="El nombre es inválido, no puede ser un espacio\n";
         if (comprobarConcurrencia){
             try {
                 if (DUsuarios.comprobarPorNombre(nombre)) error+="El nombre ya existe\n";
@@ -30,6 +34,10 @@ public class Usuario {
     public Usuario(String nombre, boolean esAdmin, boolean comprobarConcurrencia) {
         String error = "";
         if (!setNombre(nombre))error+="El nombre es demasiado largo/corto o contiene carácteres no permitidos\n";
+        //Compruebo que no hayan espacios irregulares
+        Matcher matcher = Pattern.compile(" {2}").matcher(nombre);
+        if (matcher.find()) error+="El nombre contiene dos o más espacios juntos, solo se permiten espacios únicos\n";
+        if (nombre.equals(" ")) error+="El nombre es inválido, no puede ser un espacio\n";
         if (comprobarConcurrencia){
             try {
                 if (DUsuarios.comprobarPorNombre(nombre)) error+="El nombre ya existe\n";

@@ -57,7 +57,7 @@ public final class DUsuarios {
     public static boolean anadir(Usuario usuario){
         try {
             Connection connection = Conexion.conectar();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into usuarios () values (?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into usuarios values (?, ?, ?)");
 
             preparedStatement.setString(1, usuario.getNombre());
             preparedStatement.setString(2, usuario.getContrasena());
@@ -96,12 +96,12 @@ public final class DUsuarios {
         }
     }
 
-    public static boolean cambiarContrasena(String nombre, String nombreNuevo){
+    public static boolean cambiarContrasena(String nombre, String contrasenaNueva){
         try {
             Connection connection = Conexion.conectar();
             PreparedStatement preparedStatement = connection.prepareStatement("update usuarios set contrasena = ? where nombre = ?");
 
-            preparedStatement.setString(1, nombreNuevo);
+            preparedStatement.setString(1, contrasenaNueva);
             preparedStatement.setString(2, nombre);
 
             return preparedStatement.executeUpdate()==1;

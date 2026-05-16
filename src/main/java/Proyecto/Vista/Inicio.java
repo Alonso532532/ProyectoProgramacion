@@ -257,7 +257,7 @@ public final class Inicio {
                                 JOptionPane.ERROR_MESSAGE
                         );
                     }
-                    // Inicializo todas las vitas que es necesario inicializar solo una vez
+                    // Inicializo todas las vistas que es necesario inicializar solo una vez
                     if (primero) {
                         VAModificar.construir();
                         VCModificar.construir();
@@ -298,7 +298,7 @@ public final class Inicio {
         botonR.addActionListener(a->{
             if (!campoUR.getText().isEmpty() && !campoCR.getText().isEmpty()){
                 try {
-                    JFrame mensaje = new JFrame("Información sobre el início de sesión");
+                    JFrame mensaje = new JFrame("Información sobre el registro");
                     JOptionPane.showMessageDialog(
                             mensaje,
                             CUsuarios.anadir(campoUR.getText(), campoCR.getText(), checkBoxAR.isSelected()),
@@ -306,11 +306,11 @@ public final class Inicio {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } catch (IllegalArgumentException e){
-                    JFrame mensaje = new JFrame("Información sobre el início de sesión");
+                    JFrame mensaje = new JFrame("Información sobre el registro");
                     JOptionPane.showMessageDialog(
                             mensaje,
-                            "Han ocurrido uno o varios errores al intentar iniciar sesión:\n"+e.getMessage(),
-                            "Error de inicio de sesión",
+                            "Han ocurrido uno o varios errores al intentar registrarse:\n"+e.getMessage(),
+                            "Error de registro",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }

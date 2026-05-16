@@ -37,7 +37,7 @@ public final class CUsuarios {
         if (DUsuarios.eliminarPorNombre(nombre)) {
             return "Usuario eliminado con éxito";
         } else {
-            return "Ha ocurrido un error al eliminar el usuario";
+            return "Ha ocurrido un error al intentar eliminar el usuario";
         }
     }
 
@@ -81,7 +81,7 @@ public final class CUsuarios {
             return "Han ocurrido errores con los datos del usuario, causa:\n"+e.getMessage();
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción del usuario, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la modificación del usuario, causa:\n"+e.getMessage();
         }
     }
 }

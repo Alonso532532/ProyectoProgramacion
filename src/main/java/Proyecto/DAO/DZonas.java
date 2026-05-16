@@ -37,7 +37,7 @@ public final class DZonas {
         }
     }
 
-    // Esta elimina una visita mediante el numero de zona
+    // Esta elimina una zona mediante el numero de zona
     public static boolean eliminarPorNumero(int numeroDeZona){
         try {
             Connection connection = Conexion.conectar();

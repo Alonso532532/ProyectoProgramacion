@@ -27,7 +27,7 @@ public final class DClientes {
     public static boolean anadir(Clientes cliente){
         try {
             Connection connection = Conexion.conectar();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into Clientes () values (?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into Clientes values (?, ?, ?)");
 
             preparedStatement.setString(1, cliente.getDni());
             preparedStatement.setInt(2, cliente.getEdad());

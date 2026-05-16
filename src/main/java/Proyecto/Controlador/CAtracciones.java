@@ -45,7 +45,7 @@ public final class CAtracciones {
 
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la atracción, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la eliminación de la atracción, causa:\n"+e.getMessage();
         }
     }
 
@@ -64,14 +64,14 @@ public final class CAtracciones {
             if (!(atraccionAntigua.getNumeroDeZona()==atraccionNueva.getNumeroDeZona())){
                 DAtracciones.cambiarNumeroDeZona(Integer.parseInt(numeroDeAtraccion), atraccionNueva.getNumeroDeZona());
             }
-            return "Atraccion modificada con éxito";
+            return "Atracción modificada con éxito";
 
         }catch (IllegalArgumentException e){
             // Fallos producidos al intentar insertar datos incorrectos
             return "Han ocurrido errores con los datos de la atracción, causa:\n"+e.getMessage();
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la atracción, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la modificación de la atracción, causa:\n"+e.getMessage();
         }
     }
 }

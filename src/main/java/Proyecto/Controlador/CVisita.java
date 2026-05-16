@@ -35,7 +35,6 @@ public final class CVisita {
 
         }catch (RuntimeException e){
             // Fallos de SQL
-            e.printStackTrace();
             return "Ha ocurrido un error en la introducción de la visita, causa:\n"+e.getMessage();
         }
     }
@@ -52,7 +51,7 @@ public final class CVisita {
 
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la visita, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la eliminación de la visita, causa:\n"+e.getMessage();
         }
     }
 
@@ -86,7 +85,7 @@ public final class CVisita {
             return "Han ocurrido errores con los datos de la visita, causa:\n"+e.getMessage();
         }catch (RuntimeException e){
             // Fallos de SQL
-            return "Ha ocurrido un error en la introducción de la visita, causa:\n"+e.getMessage();
+            return "Ha ocurrido un error en la modificación de la visita, causa:\n"+e.getMessage();
         }
     }
 }

@@ -20,6 +20,10 @@ public class Atracciones {
         String error = "";
         if (!setNombre(nombre)) error+="El nombre contiene carácteres no permitidos, solo se permiten letras, espacios y números\n";
         if (nombre.length()>50) error+="Nombre demasiado largo, máximo 50 carácteres\n";
+        //Compruebo que no hayan espacios irregulares
+        Matcher matcher = Pattern.compile(" {2}").matcher(nombre);
+        if (matcher.find()) error+="El nombre contiene dos o más espacios juntos, solo se permiten espacios únicos\n";
+        if (nombre.equals(" ")) error+="El nombre es inválido, no puede ser un espacio\n";
         try {
             if (!setNumeroDeZona(numeroDeZona)) error+="Numero de zona inexistente\n";
         } catch (NumberFormatException e){

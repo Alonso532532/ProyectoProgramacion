@@ -77,7 +77,7 @@ public class VAModificar {
                             "Información sobre la operación",
                             JOptionPane.INFORMATION_MESSAGE
                     );
-                    if (resp.equals("Atraccion modificada con éxito")) {
+                    if (resp.equals("Atracción modificada con éxito")) {
                         nombreAnterior = tFC2.getText();
                         numeroDeZonaAnterior = cBC1.getSelectedItem().toString().substring(0, cBC1.getSelectedItem().toString().indexOf("-"));
                         VAtracciones.actualizarTabla(modelo);

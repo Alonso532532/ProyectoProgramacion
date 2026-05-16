@@ -61,16 +61,30 @@ public class VZonas {
         JPanel medio = new JPanel();
         medio.setLayout(new BorderLayout());
 
-        // Para crear la tabla que voy a mostrar tengo que crear un array para la cabecera de la tabla y una matríz con las filas de la tabla
-        String[] cabecea = {"Numero de zona", "Nombre"};
-        Object[][] datos = new Object[CZonas.seleccionarTodo().size()][2];
-        int cont = 0;
+        String[] cabecea = new String[0];
+        Object[][] datos = new Object[0][];
 
-        // Inicializo la matríz
-        for (Zonas i: CZonas.seleccionarTodo()){
-            datos[cont][0] = i.getNumeroDeZona();
-            datos[cont][1] = i.getNombre();
-            cont++;
+        try {
+            // Para crear la tabla que voy a mostrar tengo que crear un array para la cabecera de la tabla y una matríz con las filas de la tabla
+            cabecea = new String[]{"Numero de zona", "Nombre"};
+            datos = new Object[CZonas.seleccionarTodo().size()][2];
+            int cont = 0;
+
+            // Inicializo la matríz
+            for (Zonas i : CZonas.seleccionarTodo()) {
+                datos[cont][0] = i.getNumeroDeZona();
+                datos[cont][1] = i.getNombre();
+                cont++;
+            }
+        } catch (RuntimeException e){
+            // En cso de fallo al leer los datos de la BBDD
+            JFrame mensaje = new JFrame("Operación de obtención de datos");
+            JOptionPane.showMessageDialog(
+                    mensaje,
+                    "Ha ocurrido un error al obtener los datos de la BBDD",
+                    "Error de obtención de datos",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
 
         // Para evitar que se puedan modificar datos en la tabla, creo un objeto "DefaultTableModel" y sobreescribo uno de sus métodos para hacer que sea imposible editar los campos
@@ -277,11 +291,22 @@ public class VZonas {
         // Borro las filas antes de añadir las nuevas
         modelo.setRowCount(0);
 
-        for (Zonas c : CZonas.seleccionarTodo()) {
-            modelo.addRow(new Object[]{
-                    c.getNumeroDeZona(),
-                    c.getNombre()
-            });
+        try {
+            for (Zonas c : CZonas.seleccionarTodo()) {
+                modelo.addRow(new Object[]{
+                        c.getNumeroDeZona(),
+                        c.getNombre()
+                });
+            }
+        } catch (RuntimeException e){
+            // En cso de fallo al leer los datos de la BBDD
+            JFrame mensaje = new JFrame("Operación de obtención de datos");
+            JOptionPane.showMessageDialog(
+                    mensaje,
+                    "Ha ocurrido un error al obtener los datos de la BBDD",
+                    "Error de obtención de datos",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 }
