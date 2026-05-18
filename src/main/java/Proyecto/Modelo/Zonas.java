@@ -14,7 +14,7 @@ public class Zonas {
 
     public Zonas(String nombre) {
         String error = "";
-        if (!setNombre(nombre)) error+="El nombre contiene carácteres no permitidos, solo se permiten letras y espacios\n";
+        if (!setNombre(nombre)) error+="El nombre contiene carácteres no permitidos, solo se permiten letras, numeros y espacios\n";
         //Compruebo que no hayan espacios irregulares
         Matcher matcher = Pattern.compile(" {2}").matcher(nombre);
         if (matcher.find()) error+="El nombre contiene dos o más espacios juntos, solo se permiten espacios únicos\n";
@@ -32,7 +32,7 @@ public class Zonas {
     }
 
     public boolean setNombre(String nombre) {
-        Matcher matcher = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+").matcher(nombre);
+        Matcher matcher = Pattern.compile("[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+").matcher(nombre);
         if (matcher.matches()){
             this.nombre = nombre;
             return true;

@@ -33,7 +33,7 @@ public class Usuario {
     // Este constructor sirve para que si al modificar no se cambia la contraseña, esta no se cambie ni se compruebe
     public Usuario(String nombre, boolean esAdmin, boolean comprobarConcurrencia) {
         String error = "";
-        if (!setNombre(nombre))error+="El nombre es demasiado largo/corto o contiene carácteres no permitidos\n";
+        if (!setNombre(nombre))error+="El nombre es demasiado largo/corto o contiene carácteres no permitidos, solo se permiten letras y espacios\n";
         //Compruebo que no hayan espacios irregulares
         Matcher matcher = Pattern.compile(" {2}").matcher(nombre);
         if (matcher.find()) error+="El nombre contiene dos o más espacios juntos, solo se permiten espacios únicos\n";

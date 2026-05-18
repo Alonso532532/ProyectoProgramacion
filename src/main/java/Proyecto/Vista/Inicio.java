@@ -107,9 +107,6 @@ public final class Inicio {
         base.add(medioI);
         base.add(abajoI);
 
-        campoUI.setText("Admin");
-        campoCI.setText("Sor2425$");
-
         // Parte de registro de nuevos usuarios
         // El título
         JPanel tituloRegistro = getJPanel();
