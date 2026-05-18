@@ -30,10 +30,10 @@ public class Clientes {
         }
         if (!setNombre(nombre)) error+="El nombre contiene carácteres no permitidos, solo se permiten letras y espacios\n";
         if (nombre.length()>50) error+="Nombre demasiado largo, máximo 50 carácteres\n";
+        if (nombre.length()<2) error+="Nombre demasiado corto, mínimo 2 carácteres\n";
         //Compruebo que no hayan espacios irregulares
         Matcher matcher = Pattern.compile(" {2}").matcher(nombre);
         if (matcher.find()) error+="El nombre contiene dos o más espacios juntos, solo se permiten espacios únicos\n";
-        if (nombre.equals(" ")) error+="El nombre es inválido, no puede ser un espacio\n";
         if (!error.isEmpty()) throw new IllegalArgumentException(error);
     }
 

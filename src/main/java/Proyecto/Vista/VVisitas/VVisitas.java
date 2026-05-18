@@ -1,6 +1,7 @@
 package Proyecto.Vista.VVisitas;
 
 import Proyecto.Controlador.CVisita;
+import Proyecto.Controlador.CZonas;
 import Proyecto.Modelo.Visita;
 import Proyecto.Vista.Inicio;
 import Proyecto.Vista.VAtracciones.VAtracciones;
@@ -64,14 +65,14 @@ public class VVisitas {
         Object[][] datos = new Object[0][];
         try {
             // Para crear la tabla que voy a mostrar tengo que crear un array para la cabecera de la tabla y una matríz con las filas de la tabla
-            cabecea = new String[]{"DNI", "Numero de zona", "Fecha"};
+            cabecea = new String[]{"DNI", "Zona", "Fecha"};
             datos = new Object[CVisita.seleccionarTodo().size()][3];
             int cont = 0;
 
             // Inicializo la matríz
             for (Visita i : CVisita.seleccionarTodo()) {
                 datos[cont][0] = i.getDni();
-                datos[cont][1] = i.getNumeroDeZona();
+                datos[cont][1] = i.getNumeroDeZona()+"-"+ CZonas.seleccionarNombrePorNumeroDeZona(i.getNumeroDeZona());
                 datos[cont][2] = i.getFechaBonita();
                 cont++;
             }
@@ -240,7 +241,7 @@ public class VVisitas {
             if  (tabla.getSelectedRow() != -1) {
                 // Selecciono la fila que ha seleccionado
                 int filaModelo = tabla.convertRowIndexToModel(tabla.getSelectedRow());
-                VVModificar.mostrar(base.getLocation(), modelo, String.valueOf(modelo.getValueAt(filaModelo, 0)), String.valueOf(modelo.getValueAt(filaModelo, 1)), String.valueOf(modelo.getValueAt(filaModelo, 2)));
+                VVModificar.mostrar(base.getLocation(), modelo, String.valueOf(modelo.getValueAt(filaModelo, 0)), String.valueOf(modelo.getValueAt(filaModelo, 1)).substring(0, String.valueOf(modelo.getValueAt(filaModelo, 1)).indexOf("-")), String.valueOf(modelo.getValueAt(filaModelo, 2)));
             } else {
                 JFrame mensaje = new JFrame("Operación de modificación");
                 JOptionPane.showMessageDialog(
@@ -273,7 +274,7 @@ public class VVisitas {
             for (Visita c : CVisita.seleccionarTodo()) {
                 modelo.addRow(new Object[]{
                         c.getDni(),
-                        c.getNumeroDeZona(),
+                        c.getNumeroDeZona()+"-"+CZonas.seleccionarNombrePorNumeroDeZona(c.getNumeroDeZona()),
                         c.getFechaBonita()
                 });
             }

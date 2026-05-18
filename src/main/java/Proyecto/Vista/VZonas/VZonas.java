@@ -66,7 +66,7 @@ public class VZonas {
 
         try {
             // Para crear la tabla que voy a mostrar tengo que crear un array para la cabecera de la tabla y una matríz con las filas de la tabla
-            cabecea = new String[]{"Numero de zona", "Nombre"};
+            cabecea = new String[]{"Número de zona", "Nombre"};
             datos = new Object[CZonas.seleccionarTodo().size()][2];
             int cont = 0;
 
@@ -96,6 +96,9 @@ public class VZonas {
         };
         // Añado el modelo a la tabla
         JTable tabla = new JTable(modelo);
+
+        // Oculto la clave primaria
+        tabla.removeColumn(tabla.getColumn("Número de zona"));
 
         // Hago que la tabla tenga una barra "scroll" cuando haga falta
         JScrollPane scroll = new JScrollPane(tabla);

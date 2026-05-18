@@ -10,6 +10,11 @@ public final class CZonas {
         return DZonas.seleccionarTodo();
     }
 
+    public static String seleccionarNombrePorNumeroDeZona(int numeroDeZona){
+        return DZonas.seleccionarNombrePorNumeroDeZona(numeroDeZona);
+    }
+
+
     // Mediante los datos necesarios para hacer una zona añado la zona comprobando los posibles fallos
     public static String anadir(String nombre){
         try {

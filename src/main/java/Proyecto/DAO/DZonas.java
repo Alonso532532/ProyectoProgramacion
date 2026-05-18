@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public final class DZonas {
-    // Esta función seleccióna todas las zonas
+    // Esta función selecciona todas las zonas
     public static ArrayList<Zonas> seleccionarTodo(){
         try{
             Connection conexion = Conexion.conectar();
@@ -18,6 +18,23 @@ public final class DZonas {
                 zonas.add(new Zonas(resultSet.getInt("numeroDeZona"), resultSet.getString("nombre")));
             }
             return zonas;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Esta función selecciona el nombre de zona por su número
+    public static String seleccionarNombrePorNumeroDeZona(int numeroDeZona){
+        try{
+            Connection connection = Conexion.conectar();
+            PreparedStatement preparedStatement = connection.prepareStatement("select nombre from zonas where numeroDeZona = ?");
+
+            preparedStatement.setInt(1, numeroDeZona);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
+            return resultSet.getString("Nombre");
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

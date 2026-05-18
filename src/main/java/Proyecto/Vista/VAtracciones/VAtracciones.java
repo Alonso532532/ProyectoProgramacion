@@ -1,6 +1,7 @@
 package Proyecto.Vista.VAtracciones;
 
 import Proyecto.Controlador.CAtracciones;
+import Proyecto.Controlador.CZonas;
 import Proyecto.Modelo.Atracciones;
 import Proyecto.Vista.Inicio;
 import Proyecto.Vista.VClientes.VClientes;
@@ -65,7 +66,7 @@ public class VAtracciones {
 
         try {
             // Para crear la tabla que voy a mostrar tengo que crear un array para la cabecera de la tabla y una matríz con las filas de la tabla
-            cabecea = new String[]{"Numero de atracción", "Nombre", "Numero de zona"};
+            cabecea = new String[]{"Número de atracción", "Nombre", "Zona"};
             datos = new Object[CAtracciones.seleccionarTodo().size()][3];
             int cont = 0;
 
@@ -73,7 +74,7 @@ public class VAtracciones {
             for (Atracciones i : CAtracciones.seleccionarTodo()) {
                 datos[cont][0] = i.getNumeroDeAtraccion();
                 datos[cont][1] = i.getNombre();
-                datos[cont][2] = i.getNumeroDeZona();
+                datos[cont][2] = i.getNumeroDeZona()+"-"+CZonas.seleccionarNombrePorNumeroDeZona(i.getNumeroDeZona());
                 cont++;
             }
         } catch (RuntimeException e){
@@ -98,6 +99,9 @@ public class VAtracciones {
 
         // Añado el modelo a la tabla
         JTable tabla = new JTable(modelo);
+
+        // Oculto la clave primaria
+        tabla.removeColumn(tabla.getColumn("Número de atracción"));
 
         // Hago que la tabla tenga una barra "scroll" cuando haga falta
         JScrollPane scroll = new JScrollPane(tabla);
@@ -195,6 +199,7 @@ public class VAtracciones {
             VAAnadir.mostrar(base.getLocation(), modelo);
         });
 
+        //Boton de eliminar
         botonS2.addActionListener(a->{
             JFrame mensaje = new JFrame("Operación de eliminación");
             // Compruebo si ha seleccionado algo
@@ -237,12 +242,13 @@ public class VAtracciones {
             }
         });
 
+        //Boton de modificar
         botonS3.addActionListener(a->{
             // Compruebo si ha seleccionado algo
             if  (tabla.getSelectedRow() != -1) {
                 // Selecciono la fila que ha seleccionado
                 int filaModelo = tabla.convertRowIndexToModel(tabla.getSelectedRow());
-                VAModificar.mostrar(base.getLocation(), modelo, String.valueOf(modelo.getValueAt(filaModelo, 0)), String.valueOf(modelo.getValueAt(filaModelo, 1)), String.valueOf(modelo.getValueAt(filaModelo, 2)));
+                VAModificar.mostrar(base.getLocation(), modelo, String.valueOf(modelo.getValueAt(filaModelo, 0)), String.valueOf(modelo.getValueAt(filaModelo, 1)), String.valueOf(modelo.getValueAt(filaModelo, 2)).substring(0, String.valueOf(modelo.getValueAt(filaModelo, 2)).indexOf("-")));
             } else {
                 JFrame mensaje = new JFrame("Operación de modificación");
                 JOptionPane.showMessageDialog(
@@ -275,7 +281,7 @@ public class VAtracciones {
                 modelo.addRow(new Object[]{
                         c.getNumeroDeAtraccion(),
                         c.getNombre(),
-                        c.getNumeroDeZona()
+                        c.getNumeroDeZona()+"-"+CZonas.seleccionarNombrePorNumeroDeZona(c.getNumeroDeZona())
                 });
             }
         } catch (RuntimeException e){
